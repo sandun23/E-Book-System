@@ -1,4 +1,5 @@
 ﻿using E_Book_System.Models;
+using E_Book_System.Repo;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -12,18 +13,41 @@ namespace E_Book_System.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IBookRepo _bookRepo;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IBookRepo bookRepo)
         {
             _logger = logger;
+            _bookRepo = bookRepo;
         }
 
         public IActionResult Index()
         {
-            return View();
+            var allBooks = _bookRepo.GetHomePageBooks();
+
+            return View(allBooks);
         }
 
-        public IActionResult Privacy()
+        public IActionResult ProdutView()
+        {
+            return View();
+        }
+        public IActionResult ShopView()
+        {
+            var allBooks = _bookRepo.GetAllBooks();
+
+            return View(allBooks);
+        }
+         public IActionResult AboutUs()
+        {
+            return View();
+        }
+        public IActionResult Blog()
+        {
+            return View();
+        } 
+        
+        public IActionResult ContactUs()
         {
             return View();
         }

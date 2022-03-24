@@ -11,5 +11,11 @@ namespace E_Book_System.Areas.Identity.Data
     public class E_Book_SystemUser : IdentityUser
     {
 
+        [PersonalData]
+        public string FullName { get; set; }
+
+        [PersonalData]
+        public string Address { get; set; }
+
     }
 }

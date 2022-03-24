@@ -1,4 +1,6 @@
 using E_Book_System.Data;
+using E_Book_System.Repo;
+using E_Book_System.Repo.impl;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -30,6 +32,12 @@ namespace E_Book_System
             services.AddDbContext<ApplicationDbContext>(options =>
               options.UseMySql(
                   Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddRazorPages();
+
+            services.AddScoped<IBookRepo, BookRepoImpl>();
+            services.AddScoped<ICustomerRepo, CustomerRepoImpl>();
+            services.AddScoped<IOrderRepo, OrderRepoImpl>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -50,13 +58,16 @@ namespace E_Book_System
 
             app.UseRouting();
 
+
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Admin}/{action=Index}/{id?}");
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapRazorPages();
             });
         }
     }

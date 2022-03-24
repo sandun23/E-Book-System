@@ -1,8 +1,279 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿@model IEnumerable<Book>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+
+ <!-- slider-area-start -->
+<div class="slider-area mt-30">
+    <div class="container">
+        <div class="category-image mb-30">
+            <a href="#"><img src="~/images/HomeImages/banner/32.jpg" alt="banner" /></a>
+        </div>
+    </div>
 </div>
+<!-- slider-area-end -->
+<!-- product-area-start -->
+<div class="product-area pb-100">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-title bt text-center pt-100 mb-50">
+                    <h2>Our Products</h2>
+                    <p>Browse the collection of our best selling and top interresting products. <br /> ll definitely find what you are looking for.</p>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <!-- tab-menu-start -->
+                <div class="tab-menu mb-40 text-center">
+                    <ul class="nav justify-content-center">
+                        <li><a class="active" href="#books">New Arrival</a></li>       
+                    </ul>
+                </div>
+                <!-- tab-menu-end -->
+            </div>
+        </div>
+        <!-- tab-area-start -->
+        <div class="tab-content">   
+            <div class="tab-pane fade" id="books">
+                <div class="tab-active owl-carousel">
+
+                    @foreach (var book in Model)
+                    {
+                        <!-- single-product-start -->
+                        <div class="product-wrapper">
+                            <div class="product-img">
+                                <a href="#">
+                                    <img src="@("~/BooksImage/"+book.BookImageFileName)" alt="Alternate Text" asp-append-version="true" alt="book" class="primary" />
+                                </a>
+                                <div class="quick-view">
+                                    <a class="action-view" href="#" data-target="#productModal" data-toggle="modal" title="Quick View">
+                                        <i class="fa fa-search-plus"></i>
+                                    </a>
+                                </div>
+                                <div class="product-flag">
+                                    <ul>
+                                        <li><span class="sale">new</span> <br></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="product-details text-center">
+                                <div class="product-rating">
+                                    <ul>
+                                        <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                        <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                    </ul>
+                                </div>
+                                <h4><a href="#">@book.BookName</a></h4>
+                                <h5><a href="#">@book.BookAuthorName</a></h5>
+                                <div class="product-price">
+                                    <ul>
+                                        <li>@book.BookPrice</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="product-link">
+                                <div class="product-button">
+                                    <a href="#" title="Add to cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                </div>
+                               
+                            </div>
+                        </div>
+                        <!-- single-product-end -->
+                    }
+                    </div>
+            </div>
+          
+        </div>
+        <!-- tab-area-end -->
+    </div>
+</div>
+<!-- product-area-end -->
+<!-- banner-area-start -->
+<div class="banner-area-5 mtb-100">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="banner-img-2">
+                    <a href="#"><img src="~/images/HomeImages/banner/5.jpg" alt="banner" /></a>
+                    <div class="banner-text">
+                        <h3>G. Meyer Books & Spiritual Traveler Press</h3>
+                        <h2>Sale up to 30% off</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- banner-area-end -->
+<!-- recent-post-area-start -->
+<div class="recent-post-area pb-100">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-title section-title-res pt-100 bt-3 text-center mb-30">
+                    <h2>Latest from our blog</h2>
+                </div>
+            </div>
+            <div class="post-active owl-carousel text-center">
+                <div class="col-lg-12">
+                    <div class="single-post">
+                        <div class="post-img">
+                            <a href="#"><img src="~/images/HomeImages/post/1.jpg" alt="post" /></a>
+                            <div class="blog-date-time">
+                                <span class="day-time">06</span>
+                                <span class="moth-time">Dec</span>
+                            </div>
+                        </div>
+                        <div class="post-content">
+                            <h3><a href="#">The History and the Hype</a></h3>
+                            <span class="meta-author"> Demo koparion </span>
+                            <p>Discover five of our favourite dresses from our new collection that are destined to be worn and loved immediately.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="single-post">
+                        <div class="post-img">
+                            <a href="#"><img src="~/images/HomeImages/post/2.jpg" alt="post" /></a>
+                            <div class="blog-date-time">
+                                <span class="day-time">06</span>
+                                <span class="moth-time">Dec</span>
+                            </div>
+                        </div>
+                        <div class="post-content">
+                            <h3><a href="#">Answers to your Questions</a></h3>
+                            <span class="meta-author"> Demo koparion </span>
+                            <p>Discover five of our favourite dresses from our new collection that are destined to be worn and loved immediately.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="single-post">
+                        <div class="post-img">
+                            <a href="#"><img src="~/images/HomeImages/post/3.jpg" alt="post" /></a>
+                            <div class="blog-date-time">
+                                <span class="day-time">06</span>
+                                <span class="moth-time">Dec</span>
+                            </div>
+                        </div>
+                        <div class="post-content">
+                            <h3><a href="#">What is Bootstrap?</a></h3>
+                            <span class="meta-author"> Demo koparion </span>
+                            <p>Discover five of our favourite dresses from our new collection that are destined to be worn and loved immediately.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="single-post">
+                        <div class="post-img">
+                            <a href="#"><img src="~/images/HomeImages/post/4.jpg" alt="post" /></a>
+                            <div class="blog-date-time">
+                                <span class="day-time">06</span>
+                                <span class="moth-time">Dec</span>
+                            </div>
+                        </div>
+                        <div class="post-content">
+                            <h3><a href="#">Etiam eros massa</a></h3>
+                            <span class="meta-author"> Demo koparion </span>
+                            <p>Discover five of our favourite dresses from our new collection that are destined to be worn and loved immediately.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- recent-post-area-end -->
+<!-- banner-area-start -->
+<div class="banner-area banner-res-large pb-70">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                <div class="single-banner mb-30">
+                    <div class="banner-img">
+                        <a href="#"><img src="~/images/HomeImages/banner/1.png" alt="banner" /></a>
+                    </div>
+                    <div class="banner-text">
+                        <h4>Free shipping item</h4>
+                        <p>For all orders over $500</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                <div class="single-banner mb-30">
+                    <div class="banner-img">
+                        <a href="#"><img src="~/images/HomeImages/banner/2.png" alt="banner" /></a>
+                    </div>
+                    <div class="banner-text">
+                        <h4>Money back guarantee</h4>
+                        <p>100% money back guarante</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                <div class="single-banner mb-30">
+                    <div class="banner-img">
+                        <a href="#"><img src="~/images/HomeImages/banner/3.png" alt="banner" /></a>
+                    </div>
+                    <div class="banner-text">
+                        <h4>Cash on delivery</h4>
+                        <p>Lorem ipsum dolor consect</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                <div class="single-banner mb-30">
+                    <div class="banner-img">
+                        <a href="#"><img src="~/images/HomeImages/banner/4.png" alt="banner" /></a>
+                    </div>
+                    <div class="banner-text">
+                        <h4>Help & Support</h4>
+                        <p>Call us : + 0123.4567.89</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- banner-area-end -->
+<!-- social-group-area-start -->
+<div class="social-group-area ptb-60 bt">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-12">
+                <div class="section-title-3">
+                    <h3>Latest Tweets</h3>
+                </div>
+                <div class="twitter-content">
+                    <div class="twitter-icon">
+                        <a href="#"><i class="fa fa-twitter"></i></a>
+                    </div>
+                    <div class="twitter-text">
+                        <p>
+                            Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum notare quam
+                        </p>
+                        <a href="#">koparion</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-12">
+                <div class="section-title-3">
+                    <h3>Stay Connected</h3>
+                </div>
+                <div class="link-follow">
+                    <ul>
+                        <li><a href="#"><i class="fas fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fas fa-google-plus"></i></a></li>
+                        <li><a href="#"><i class="fas fa-facebook"></i></a></li>
+                        <li><a href="#"><i class="fas fa-youtube"></i></a></li>
+                        <li><a href="#"><i class="fa fa-flickr"></i></a></li>
+                        <li><a href="#"><i class="fa fa-vimeo"></i></a></li>
+                        <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- social-group-area-end -->

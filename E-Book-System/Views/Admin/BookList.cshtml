@@ -1,0 +1,73 @@
+﻿
+@model IEnumerable<Book>
+@{
+    ViewData["Title"] = "Home Page";
+    Layout = "_LayoutAdmin";
+}
+<main>
+    <div class="container-fluid px-4">
+        <h3 class="mt-4">All Book Details</h3>
+
+
+        <br />
+        <div class="card mb-4">
+            <div class="card-header">
+                <i class="fas fa-table me-1"></i>
+                All Order Details
+            </div>
+            <div class="card-body">
+                <table id="datatablesSimple">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Book Name</th>
+                            <th>Customer Mobile No</th>
+                            <th>Customers Email</th>
+                            <th>Customer Name</th>
+                            <th>QTY</th>
+                            <th>Total</th>
+                            <th>Order Status</th>
+                            <th></th>
+
+                            <th></th>
+
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th></th>
+                            <th>Customer Mobile No</th>
+                            <th>Customers Email</th>
+                            <th>Customer Name</th>
+                            <th>QTY</th>
+                            <th>Total</th>
+                            <th>Order Status</th>
+                            <th> </th>
+
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        @foreach (var book in Model)
+                        {
+
+                            <tr>
+                                <td><img src="@("~/BooksImage/"+book.BookImageFileName)" alt="Alternate Text" asp-append-version="true" style="background-size:cover" /></td>
+                                <td>@book.BookName</td>
+                                <td>@book.BookPrice</td>
+                                <td>@book.BookAuthorName</td>
+                                <td>@book.BookType</td>
+                                <td>@book.BookCategory</td>
+                                <td>@book.BookDesc</td>
+                                <td>
+                                    <a class="btn btn-info form-inline" asp-action="BookEditLoad" asp-route-BookID="@book.BookID">Edit</a>
+                                </td>
+
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</main>

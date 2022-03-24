@@ -1,0 +1,68 @@
+﻿
+
+@model E_Book_System.Models.Book
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "_LayoutAdmin";
+}
+
+<main>
+    <div class="container-fluid px-4">
+        <h3 class="mt-4">Books Details</h3>
+
+        <div class=" col-sm-10">
+            <div class="card ">
+                <div class="card-header">
+                    Update Book Details
+                </div>
+                <div class="card-body ">
+                    <form asp-controller="Books" asp-action="Edit">
+                        <div class="form-row">
+                            <div class="col-md-4 mb-3">
+                                <label for="validationBookName"> Book Name</label>
+                                <input asp-for="BookName" type="text" class="form-control" required>
+                                <input asp-for="BookID" hidden type="text" class="form-control" required>
+
+
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="validationBookName"> Book Price</label>
+                                <input asp-for="BookPrice" type="text" class="form-control" required>
+
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="validationBookName">Author Name</label>
+                                <input asp-for="BookAuthorName" type="text" class="form-control" required>
+
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="validationBookName">Description</label>
+                            <textarea asp-for="BookDesc" class="form-control" required></textarea>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-4 mb-3">
+                                <label for="validationBookName">Category</label>
+                                <input asp-for="BookCategory" type="text" class="form-control" required>
+
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="validationBookName">Book Type</label>
+                                <input asp-for="BookType" type="text" class="form-control" required>
+
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="validationBookName">Book QTY</label>
+                                <input asp-for="BookQty" type="text" class="form-control" required>
+
+                            </div>
+                        </div>
+                         <button type="submit" class="btn-lg btn btn-success float-end">Update</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</main>
+

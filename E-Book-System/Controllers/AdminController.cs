@@ -1,5 +1,9 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using E_Book_System.Repo;
+using E_Book_System.Repo.impl;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,34 +11,63 @@ using System.Threading.Tasks;
 
 namespace E_Book_System.Controllers
 {
+   
+    [Authorize(Roles ="ADMIN")]
     public class AdminController : Controller
     {
+        private readonly ILogger<AdminController> _logger;
+        private readonly IBookRepo _bookRepo;
+        private readonly ICustomerRepo _customerRepo;
+        private readonly IOrderRepo _orderRepo;
+
+
+
+        public AdminController(ILogger<AdminController> logger, IBookRepo bookRepo, ICustomerRepo customerRepo,IOrderRepo orderRepo)
+        {
+            _logger = logger;
+            _bookRepo = bookRepo;
+            _customerRepo = customerRepo;
+            _orderRepo = orderRepo;
+        }
+
+
         // GET: AdminController1
         public ActionResult Index()
         {
             return View();
         }
 
-        public ActionResult Books()
+        public ActionResult BookList()
+        {
+            var book = _bookRepo.GetAllBooks();
+            return View(book);
+        }
+        
+        public ActionResult BookAddNew()
         {
             return View();
         }
-         public ActionResult Customers()
+        
+
+        public ActionResult OrderList()
         {
-            return View();
+            var orders = _orderRepo.GetAllOrderDetails();
+            return View(orders);
         }
-         public ActionResult Orders()
+        
+        public ActionResult CustomerList()
         {
-            return View();
+            var customer = _customerRepo.GetAllCustomers();
+            return View(customer);
         }
-         public ActionResult Reports()
+
+        public ActionResult BookEditLoad(string BookID)
         {
-            return View();
+            var book = _bookRepo.GetBook(BookID);
+
+            return View(book);
         }
-          public ActionResult Settings()
-        {
-            return View();
-        }
+
 
         // GET: AdminController1/Details/5
         public ActionResult Details(int id)

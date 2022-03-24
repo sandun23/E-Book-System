@@ -47,6 +47,21 @@ namespace E_Book_System.Areas.Identity.Pages.Account
         public class InputModel
         {
             [Required]
+            [DataType(DataType.Text)]
+            [Display(Name = "FullName")]
+            public string FullName { get; set; }
+
+            [Required]
+            [DataType(DataType.Text)]
+            [Display(Name = "PhoneNumber")]
+            public string PhoneNumber { get; set; }
+
+            [Required]
+            [DataType(DataType.Text)]
+            [Display(Name = "Address")]
+            public string Address { get; set; }
+
+            [Required]
             [EmailAddress]
             [Display(Name = "Email")]
             public string Email { get; set; }
@@ -75,8 +90,9 @@ namespace E_Book_System.Areas.Identity.Pages.Account
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             if (ModelState.IsValid)
             {
-                var user = new E_Book_SystemUser { UserName = Input.Email, Email = Input.Email };
+                var user = new E_Book_SystemUser { UserName = Input.Email, Email = Input.Email, FullName = Input.FullName, Address = Input.Address, PhoneNumber = Input.PhoneNumber };
                 var result = await _userManager.CreateAsync(user, Input.Password);
+                await _userManager.AddToRoleAsync(user, "Customer");
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User created a new account with password.");

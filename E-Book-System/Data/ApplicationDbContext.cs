@@ -1,4 +1,5 @@
-﻿using E_Book_System.Areas.Identity.Data;
+﻿    using E_Book_System.Areas.Identity.Data;
+using E_Book_System.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -18,6 +19,11 @@ namespace E_Book_System.Data
 
         }
 
+        public DbSet<Book> Books { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderDetails> OrderDetails { get; set; }
+        public DbSet<Rating> Ratings { get; set; }
+        public DbSet<Cart> Carts { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

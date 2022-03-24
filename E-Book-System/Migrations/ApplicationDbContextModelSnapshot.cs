@@ -25,6 +25,9 @@ namespace E_Book_System.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
+                    b.Property<string>("Address")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
@@ -35,6 +38,9 @@ namespace E_Book_System.Migrations
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("tinyint(1)");
+
+                    b.Property<string>("FullName")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("tinyint(1)");
@@ -79,6 +85,161 @@ namespace E_Book_System.Migrations
                         .HasName("UserNameIndex");
 
                     b.ToTable("AspNetUsers");
+                });
+
+            modelBuilder.Entity("E_Book_System.Models.Book", b =>
+                {
+                    b.Property<string>("BookID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
+
+                    b.Property<string>("BookAuthorName")
+                        .IsRequired()
+                        .HasColumnType("varchar(100) CHARACTER SET utf8mb4")
+                        .HasMaxLength(100);
+
+                    b.Property<string>("BookCategory")
+                        .IsRequired()
+                        .HasColumnType("varchar(100) CHARACTER SET utf8mb4")
+                        .HasMaxLength(100);
+
+                    b.Property<string>("BookDesc")
+                        .IsRequired()
+                        .HasColumnType("varchar(1000) CHARACTER SET utf8mb4")
+                        .HasMaxLength(1000);
+
+                    b.Property<string>("BookImageFileName")
+                        .HasColumnType("varchar(100) CHARACTER SET utf8mb4")
+                        .HasMaxLength(100);
+
+                    b.Property<string>("BookName")
+                        .IsRequired()
+                        .HasColumnType("varchar(100) CHARACTER SET utf8mb4")
+                        .HasMaxLength(100);
+
+                    b.Property<decimal>("BookPrice")
+                        .HasColumnType("decimal(65,30)");
+
+                    b.Property<int>("BookQty")
+                        .HasColumnType("int");
+
+                    b.Property<string>("BookType")
+                        .IsRequired()
+                        .HasColumnType("varchar(100) CHARACTER SET utf8mb4")
+                        .HasMaxLength(100);
+
+                    b.Property<DateTime>("Created_at")
+                        .HasColumnType("datetime(6)");
+
+                    b.HasKey("BookID");
+
+                    b.ToTable("Books");
+                });
+
+            modelBuilder.Entity("E_Book_System.Models.Cart", b =>
+                {
+                    b.Property<string>("CartId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
+
+                    b.Property<string>("BookID")
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
+
+                    b.Property<int>("Qty")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("price")
+                        .HasColumnType("decimal(65,30)");
+
+                    b.Property<string>("userID")
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
+
+                    b.HasKey("CartId");
+
+                    b.HasIndex("BookID");
+
+                    b.HasIndex("userID");
+
+                    b.ToTable("Carts");
+                });
+
+            modelBuilder.Entity("E_Book_System.Models.Order", b =>
+                {
+                    b.Property<string>("OrderID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
+
+                    b.Property<string>("OrderStatus")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<int>("Qty")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("price")
+                        .HasColumnType("decimal(65,30)");
+
+                    b.Property<string>("userID")
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
+
+                    b.HasKey("OrderID");
+
+                    b.HasIndex("userID");
+
+                    b.ToTable("Orders");
+                });
+
+            modelBuilder.Entity("E_Book_System.Models.OrderDetails", b =>
+                {
+                    b.Property<string>("OrderDetailsID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
+
+                    b.Property<string>("BookID")
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
+
+                    b.Property<int>("Qty")
+                        .HasColumnType("int");
+
+                    b.Property<string>("orderId")
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
+
+                    b.Property<decimal>("subTotal")
+                        .HasColumnType("decimal(65,30)");
+
+                    b.HasKey("OrderDetailsID");
+
+                    b.HasIndex("BookID");
+
+                    b.HasIndex("orderId");
+
+                    b.ToTable("OrderDetails");
+                });
+
+            modelBuilder.Entity("E_Book_System.Models.Rating", b =>
+                {
+                    b.Property<string>("RateID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
+
+                    b.Property<string>("BookID")
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
+
+                    b.Property<string>("Comments")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<int>("StarCount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("userID")
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
+
+                    b.HasKey("RateID");
+
+                    b.HasIndex("BookID");
+
+                    b.HasIndex("userID");
+
+                    b.ToTable("Ratings");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -211,6 +372,46 @@ namespace E_Book_System.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("E_Book_System.Models.Cart", b =>
+                {
+                    b.HasOne("E_Book_System.Models.Book", "Book")
+                        .WithMany()
+                        .HasForeignKey("BookID");
+
+                    b.HasOne("E_Book_System.Areas.Identity.Data.E_Book_SystemUser", "user")
+                        .WithMany()
+                        .HasForeignKey("userID");
+                });
+
+            modelBuilder.Entity("E_Book_System.Models.Order", b =>
+                {
+                    b.HasOne("E_Book_System.Areas.Identity.Data.E_Book_SystemUser", "user")
+                        .WithMany()
+                        .HasForeignKey("userID");
+                });
+
+            modelBuilder.Entity("E_Book_System.Models.OrderDetails", b =>
+                {
+                    b.HasOne("E_Book_System.Models.Book", "Book")
+                        .WithMany()
+                        .HasForeignKey("BookID");
+
+                    b.HasOne("E_Book_System.Models.Order", "order")
+                        .WithMany()
+                        .HasForeignKey("orderId");
+                });
+
+            modelBuilder.Entity("E_Book_System.Models.Rating", b =>
+                {
+                    b.HasOne("E_Book_System.Models.Book", "Book")
+                        .WithMany()
+                        .HasForeignKey("BookID");
+
+                    b.HasOne("E_Book_System.Areas.Identity.Data.E_Book_SystemUser", "user")
+                        .WithMany()
+                        .HasForeignKey("userID");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

@@ -1,0 +1,115 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - E_Book_System</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="~/images//HomeImages/favicon.png">
+
+    <!-- all css here -->
+    <!-- bootstrap v3.3.6 css -->
+    <!-- animate css -->
+    <link rel="stylesheet" href="~/css/HomeCSS/animate.css">
+    <!-- meanmenu css -->
+    <link rel="stylesheet" href="~/css/HomeCSS/meanmenu.min.css">
+    <!-- owl.carousel css -->
+    <link rel="stylesheet" href="~/css/HomeCSS/owl.carousel.css">
+    <!-- font-awesome css -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
+    <!-- flexslider.css-->
+    <link rel="stylesheet" href="~/css/HomeCSS/flexslider.css">
+    <!-- chosen.min.css-->
+    <link rel="stylesheet" href="~/css/HomeCSS/chosen.min.css">
+    <!-- style css -->
+    <link rel="stylesheet" href="~/css/HomeCSS/style.css">
+    <!-- responsive css -->
+    <link rel="stylesheet" href="~/css/HomeCSS/responsive.css">
+    <!-- modernizr css -->
+    <script src="~/js/HomeJS/vendor/modernizr-2.8.3.min.js"></script>
+</head>
+<body>
+    <header>
+       
+        <!-- header-top-area-end -->
+        <!-- header-mid-area-start -->
+        <div class="header-top-area">
+            <div class="container">
+                <div class="row">
+                   
+                    <div class="col-lg-6 col-md-4 col-12">
+                        <div class="logo-area  logo-xs-mrg">
+                            <a asp-area="" asp-controller="Home" asp-action="Index"><img src="~/images/logo mini.png" alt="logo" height="100px" width="100px" /></a>
+                        </div>
+                    </div>
+                
+                </div>
+            </div>
+        </div>
+    
+
+    </header>
+    <div class="container py-5">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer>
+   
+   
+        <!-- footer-mid-end -->
+        <!-- footer-bottom-start -->
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="row bt-2">
+                    <div class="col-lg-6 col-md-6 col-12">
+                        <div class="copy-right-area">
+                            <p>&copy; 2022 <strong> E-Book (PVT)Ltd </strong></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- footer-bottom-end -->
+    </footer>
+
+    <!-- all js here -->
+    <!-- jquery latest version -->
+    <script src="~/js/HomeJS/vendor/jquery-1.12.4.min.js"></script>
+    <!-- popper js -->
+    <script src="~/js/HomeJS/popper.min.js"></script>
+    <!-- bootstrap js -->
+    <script src="~/js/HomeJS/bootstrap.min.js"></script>
+    <!-- owl.carousel js -->
+    <script src="~/js/HomeJS/owl.carousel.min.js"></script>
+    <!-- meanmenu js -->
+    <script src="~/js/HomeJS/jquery.meanmenu.js"></script>
+    <!-- wow js -->
+    <script src="~/js/HomeJS/wow.min.js"></script>
+    <!-- jquery.parallax-1.1.3.js -->
+    <script src="~/js/HomeJS/jquery.parallax-1.1.3.js"></script>
+    <!-- jquery.countdown.min.js -->
+    <script src="~/js/HomeJS/jquery.countdown.min.js"></script>
+    <!-- jquery.flexslider.js -->
+    <script src="~/js/HomeJS/jquery.flexslider.js"></script>
+    <!-- chosen.jquery.min.js -->
+    <script src="~/js/HomeJS/chosen.jquery.min.js"></script>
+    <!-- jquery.counterup.min.js -->
+    <script src="~/js/HomeJS/jquery.counterup.min.js"></script>
+    <!-- waypoints.min.js -->
+    <script src="~/js/HomeJS/waypoints.min.js"></script>
+    <!-- plugins js -->
+    <script src="~/js/HomeJS/plugins.js"></script>
+    <!-- main js -->
+    <script src="~/js/HomeJS/main.js"></script>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

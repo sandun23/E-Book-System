@@ -20,8 +20,9 @@ namespace E_Book_System.Areas.Identity
                     options.UseMySql(
                         context.Configuration.GetConnectionString("DefaultConnection")));
 
-                services.AddDefaultIdentity<E_Book_SystemUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                    .AddEntityFrameworkStores<ApplicationDbContext>();
+                services.AddDefaultIdentity<E_Book_SystemUser>(options => options.SignIn.RequireConfirmedAccount = false)
+                .AddRoles<IdentityRole>()
+                .AddEntityFrameworkStores<ApplicationDbContext>();
             });
         }
     }
